@@ -12,7 +12,12 @@
 // out.print(a.charAt(2));
 %>
 
+
+${pageContext.session.id}
+<%=session.getId() %>
 <h1 align="center">首页</h1>
+<a href="user?m=logout">销毁</a>
+欢迎${sessionScope.user.username}
 <a href="addDept.jsp">添加部门</a>
 <a href="deptAction?m=listDept">管理部门</a>
 </body>

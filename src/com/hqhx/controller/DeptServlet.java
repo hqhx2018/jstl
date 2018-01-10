@@ -44,7 +44,6 @@ public class DeptServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
 		System.out.println("---------doPost----------");
 		String m=req.getParameter("m");
 		switch(m){
