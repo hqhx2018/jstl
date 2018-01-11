@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+/* String username="";
+String password="";
+
+Cookie[] cookies=request.getCookies();
+if(cookies!=null){
+	for(Cookie cookie:cookies){
+		//out.print(cookie.getName()+" "+URLDecoder.decode(cookie.getValue(),"UTF-8")+" "+cookie.getMaxAge()+" "+cookie.getPath());
+		if(cookie.getName().equals("username")){
+			username=URLDecoder.decode(cookie.getValue(),"UTF-8");
+		}else if(cookie.getName().equals("password")){
+			password=URLDecoder.decode(cookie.getValue(),"UTF-8");
+		}
+	}
+} */
+%>
 <h1 align="center">登录页面</h1>
 <form action="user" method="post">
 <input type="hidden" name="m" value="login">
@@ -16,11 +33,11 @@
 </tr>
 <tr>
 <td>用户名：</td>
-<td><input type="text" name="username"/></td>
+<td><input id="input1" type="text" name="username"/></td>
 </tr>
 <tr>
 <td>密码：</td>
-<td><input type="password" name="password"/></td>
+<td><input id="input2"  type="password" name="password"/></td>
 </tr>
 <tr>
 <td>验证码：</td>
@@ -36,5 +53,9 @@
 </tr>
 </table>
 </form>
+<script type="text/javascript">
+document.getElementById("input1").value=decodeURIComponent('${cookie.username.value}');
+document.getElementById("input2").value=decodeURIComponent('${cookie.password.value}');
+</script>
 </body>
 </html>

@@ -3,9 +3,11 @@ package com.hqhx.controller;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -112,6 +114,19 @@ public class UserServlet extends HttpServlet{
 					HttpSession session=req.getSession();
 					//把当前用户存储到session中
 					session.setAttribute("user", user);
+					//把用户名和密码响应给客户端，让客户端把用户名和密码存储到客户端的Cookie文件中
+					Cookie uname=new Cookie("username",URLEncoder.encode(user.getUsername(),"UTF-8"));
+					Cookie psw=new Cookie("password",user.getPassword());
+					if("1".equals(isM)){
+						//设置用户名和密码在cookie文件中的保存时间
+						uname.setMaxAge(7*24*60*60*1000);
+						psw.setMaxAge(7*24*60*60*1000);
+					}else{
+						uname.setMaxAge(0);
+						psw.setMaxAge(0);
+					}
+					resp.addCookie(uname);
+					resp.addCookie(psw);
 					resp.sendRedirect("index.jsp");
 				}else{
 					//登录失败，提示验证码错误，请重新登录
