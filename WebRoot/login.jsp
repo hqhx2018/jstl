@@ -24,7 +24,7 @@
 </tr>
 <tr>
 <td>验证码：</td>
-<td><input type="text" name="code"/></td>
+<td><input type="text" name="code"/><img onclick="this.src='user?m=createImage&a='+Math.random()" src="user?m=createImage" /></td>
 </tr>
 <tr>
 <td><input type="checkbox" value="1" name="isM"/></td>

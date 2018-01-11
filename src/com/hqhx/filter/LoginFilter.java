@@ -32,7 +32,7 @@ public class LoginFilter implements Filter{
 		System.out.println("----------------------");
 		System.out.println(uri);
 		String m=req.getParameter("m");
-		if(uri.equals("")||uri.equals("login.jsp")||(uri.equals("user")&&m.equals("login"))){
+		if(uri.equals("untitled.bmp")||uri.equals("")||uri.equals("login.jsp")||(uri.equals("user")&&m.equals("login"))||(uri.equals("user")&&m.equals("createImage"))){
 			//当访问登录页面或者登录时不能拦截
 			chain.doFilter(req, response);
 		}else{
