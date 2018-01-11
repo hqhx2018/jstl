@@ -49,25 +49,25 @@ public class CreateImage {
 	public static BufferedImage getImage(){
 		String str=getString();
 		code=str;
-		BufferedImage image=new BufferedImage(200, 100, BufferedImage.TYPE_INT_BGR);
+		BufferedImage image=new BufferedImage(100, 40, BufferedImage.TYPE_INT_BGR);
 		//获取一个可以绘制的2d图片
 		Graphics g=image.getGraphics();
 		//设置颜色为白色
 		g.setColor(Color.WHITE);
 		//先把图片填充成白色底色
-		g.fillRect(0, 0, 200, 100);
+		g.fillRect(0, 0, 100, 40);
 		
 		//写字符串
 		for(int i=0;i<str.length();i++){
 			g.setFont(new Font("Times New Roman", Font.BOLD, 25));
 			//设置颜色
 			g.setColor(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
-			g.drawString(str.substring(i,i+1), 30+30*i, 50);
+			g.drawString(str.substring(i,i+1), 10+20*i, 25);
 		}
 		//画干扰线
 		for(int i=0;i<400;i++){
 			g.setColor(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
-			g.drawOval(r.nextInt(200), r.nextInt(100), 1, 1);
+			g.drawOval(r.nextInt(100), r.nextInt(40), 1, 1);
 		}
 		return image;
 	}
