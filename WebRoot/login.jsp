@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 </head>
 <body>
 <%
@@ -24,6 +25,7 @@ if(cookies!=null){
 	}
 } */
 %>
+当前在线人数：<span id="c"></span>
 <h1 align="center">登录页面</h1>
 <form action="user" method="post">
 <input type="hidden" name="m" value="login">
@@ -56,6 +58,18 @@ if(cookies!=null){
 <script type="text/javascript">
 document.getElementById("input1").value=decodeURIComponent('${cookie.username.value}');
 document.getElementById("input2").value=decodeURIComponent('${cookie.password.value}');
+
+
+window.setInterval(function(){
+	$.ajax({
+		type:"get",
+		url:"user?m=getCount",
+		success:function(msg){
+	
+			$("#c").text(msg);
+		}});
+}, 1000)
+
 </script>
 </body>
 </html>

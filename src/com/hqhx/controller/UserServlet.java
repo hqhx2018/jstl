@@ -3,6 +3,7 @@ package com.hqhx.controller;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
@@ -41,9 +42,33 @@ public class UserServlet extends HttpServlet{
 			logout(req,resp);
 		case "createImage":
 			createImage(req,resp);
+		case "getCount":
+			getCount(req,resp);
 		default:
 			break;
 		}
+	}
+
+	//获取当前在线人数
+	private void getCount(HttpServletRequest req, HttpServletResponse resp) {
+		Integer c=(Integer) req.getServletContext().getAttribute("count");
+		PrintWriter out=null;
+		try {
+			out=resp.getWriter();
+			System.out.println(out);
+			System.out.println(c);
+			if(c==null){
+				out.write(0);
+			}else{
+				out.write(c.toString());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+				out.close();
+		}
+		
 	}
 
 	private void createImage(HttpServletRequest req, HttpServletResponse resp) {
