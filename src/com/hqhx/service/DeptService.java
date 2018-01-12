@@ -3,6 +3,7 @@ package com.hqhx.service;
 import java.util.List;
 
 import com.hqhx.model.Dept;
+import com.hqhx.model.Pager;
 
 public interface DeptService{
 	/**
@@ -31,6 +32,13 @@ public interface DeptService{
 	 * @return：返回所有部门信息
 	 */
 	public List<Dept> listDept();
+	
+	
+	/**
+	 * 分页查询所有部门信息
+	 * @return：
+	 */
+	public void listDeptByPager(Pager<Dept> pager);
 	
 	/**
 	 * 根据编号查询部门对象

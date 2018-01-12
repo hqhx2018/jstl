@@ -65,7 +65,6 @@ window.setInterval(function(){
 		type:"get",
 		url:"user?m=getCount",
 		success:function(msg){
-	
 			$("#c").text(msg);
 		}});
 }, 1000)

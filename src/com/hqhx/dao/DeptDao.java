@@ -3,6 +3,7 @@ package com.hqhx.dao;
 import java.util.List;
 
 import com.hqhx.model.Dept;
+import com.hqhx.model.Pager;
 
 public interface DeptDao {
 
@@ -33,10 +34,23 @@ public interface DeptDao {
 	 */
 	public List<Dept> listDept();
 	
+	
+	/**
+	 * 分页查询所有部门信息
+	 * @return：
+	 */
+	public void listDeptByPager(Pager<Dept> pager);
+	
 	/**
 	 * 根据编号查询部门对象
 	 * @param deptno：要查询的部门的编号
 	 * @return:返回查询到的部门对象
 	 */
 	public Dept findDeptById(Integer deptno);
+	
+	/**
+	 * 获取总部门个数
+	 * @return
+	 */
+	public Long getTotalCount();
 }

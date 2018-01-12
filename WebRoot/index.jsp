@@ -20,5 +20,6 @@ ${pageContext.session.id}
 欢迎${sessionScope.user.username}
 <a href="addDept.jsp">添加部门</a>
 <a href="deptAction?m=listDept">管理部门</a>
+<a href="deptAction?m=listDeptByPager">分页管理部门</a>
 </body>
 </html>

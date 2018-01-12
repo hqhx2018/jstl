@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hqhx.model.Dept;
+import com.hqhx.model.Pager;
 import com.hqhx.service.DeptService;
 import com.hqhx.service.impl.DeptServiceImpl;
 
@@ -61,8 +62,27 @@ public class DeptServlet extends HttpServlet{
 			break;
 		case "updateDept":
 			updateDept(req,resp);
+			break;
+		case "listDeptByPager":
+			listDeptByPager(req,resp);
 		}
 	}
+	
+	//分页查询
+	private void listDeptByPager(HttpServletRequest req,
+			HttpServletResponse resp) throws ServletException, IOException {
+		//获取客户端传递的当前页
+		String currentPage=req.getParameter("currentPage");
+		Pager<Dept> pager=new Pager<Dept>();
+		//客户端如果传递了页码则把页码设置给pager对象，如果没有传递，不用设置使用默认的当前页1
+		if(currentPage!=null){
+			pager.setCurrentPage(Integer.parseInt(currentPage));
+		}
+		deptService.listDeptByPager(pager);
+		req.setAttribute("pager", pager);
+		req.getRequestDispatcher("listDeptByPager.jsp").forward(req, resp);
+	}
+
 	//修改部门
 	private void updateDept(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String deptno=req.getParameter("deptno");

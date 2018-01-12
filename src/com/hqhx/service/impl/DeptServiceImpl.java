@@ -5,6 +5,7 @@ import java.util.List;
 import com.hqhx.dao.DeptDao;
 import com.hqhx.dao.impl.DeptDaoImpl;
 import com.hqhx.model.Dept;
+import com.hqhx.model.Pager;
 import com.hqhx.service.DeptService;
 
 public class DeptServiceImpl implements DeptService{
@@ -44,6 +45,13 @@ public class DeptServiceImpl implements DeptService{
 	public Dept findDeptById(Integer deptno) {
 		System.out.println("service---------->"+deptno);
 		return deptDao.findDeptById(deptno);
+	}
+
+	@Override
+	public void listDeptByPager(Pager<Dept> pager) {
+		deptDao.listDeptByPager(pager);
+		long totalCount=deptDao.getTotalCount();
+		pager.setTotalCount(totalCount);
 	}
 
 }
